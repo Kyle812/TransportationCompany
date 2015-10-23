@@ -103,7 +103,7 @@ public class Bus implements Vehicle {
 
     @Override
     public Vehicle upgrade(int capacity) {
-        Airplane plane = new Airplane(route, capacity * 3);
+        Airplane plane = new Airplane(route, capacity);
         for (int i = 0; i < passengers.size(); i++) {
             plane.addPassenger(passengers.get(i));
         }

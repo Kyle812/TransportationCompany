@@ -14,11 +14,15 @@ public class Passenger {
     }
 
     public void confirm() {
-        bookingStatus = CONFIRMED;
+        if (!bookingStatus.equals(CANCELED)) {
+            bookingStatus = CONFIRMED;
+        }
     }
 
     public void cancel() {
-        bookingStatus = CANCELED;
+        if (!bookingStatus.equals(CONFIRMED)) {
+            bookingStatus = CANCELED;
+        }
     }
 
     public String getPassengerName() {

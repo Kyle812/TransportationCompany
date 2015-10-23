@@ -44,7 +44,7 @@ public class VehicleManagement {
                             if (((Bus) temp).isReadyForUpgrade()) {
                                 bus--;
                                 plane++;
-                                vehicles.add(temp.upgrade(temp.getCapacity()));
+                                vehicles.add(temp.upgrade(temp.getCapacity() * 3));
                                 vehicles.remove(lookupVehicle(person.getRoute()));
                                 return true;
                             } else {
