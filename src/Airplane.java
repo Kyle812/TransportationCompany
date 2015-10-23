@@ -41,13 +41,17 @@ public class Airplane implements Vehicle {
 
     @Override
     public boolean addPassenger(Passenger person, boolean waitingList) {
-        if (person == null || person.getRoute() == null || !person.getRoute().equals(this.route))
+        if (person == null || person.getRoute() == null) {
             return false;
+        }
+        if (!person.getRoute().equals(this.route)) {
+            person.cancel();
+            return false;
+        }
         if (waitingList) {
-            if (this.count > this.capacity) {
-                this.passengers.add(person);
-                this.count++;
-                return true;
+            if (this.count >= this.capacity) {
+                person.cancel();
+                return false;
             }
             this.passengers.add(person);
             this.count++;
@@ -55,7 +59,7 @@ public class Airplane implements Vehicle {
             return true;
         }
         else {
-            if (this.count > this.capacity) {
+            if (this.count >= this.capacity) {
                 person.cancel();
                 return false;
             }
@@ -68,7 +72,7 @@ public class Airplane implements Vehicle {
 
     @Override
     public boolean addPassenger(Passenger person) {
-       return addPassenger(person, false);
+        return addPassenger(person, false);
     }
 
     @Override

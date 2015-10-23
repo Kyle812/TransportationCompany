@@ -66,10 +66,15 @@ public class Bus implements Vehicle {
 //            person.cancel();
 //            return false;
 //        }
-        if (person == null || person.getRoute() == null || !person.getRoute().equals(this.route))
+        if (person == null || person.getRoute() == null) {
             return false;
+        }
+        if (!person.getRoute().equals(this.route)) {
+            person.cancel();
+            return false;
+        }
         if (waitingList) {
-            if (this.count > this.capacity) {
+            if (this.count >= this.capacity) {
                 this.passengers.add(person);
                 this.count++;
                 return true;
@@ -80,7 +85,7 @@ public class Bus implements Vehicle {
             return true;
         }
         else {
-            if (this.count > this.capacity) {
+            if (this.count >= this.capacity) {
                 person.cancel();
                 return false;
             }
@@ -98,7 +103,7 @@ public class Bus implements Vehicle {
 
     @Override
     public Vehicle upgrade(int capacity) {
-        Airplane plane = new Airplane(route, capacity * 2);
+        Airplane plane = new Airplane(route, capacity * 3);
         for (int i = 0; i < passengers.size(); i++) {
             plane.addPassenger(passengers.get(i));
         }

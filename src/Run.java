@@ -75,7 +75,8 @@ public class Run {
 		Scanner scanner = new Scanner(System.in);
 		VehicleManagement obj = new VehicleManagement(10, 5);
 		int choice;
-		String from, to;
+		String from;
+		String to;
 		do {
 			menu();
 			choice = scanner.nextInt();

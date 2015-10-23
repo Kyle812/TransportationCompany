@@ -42,15 +42,16 @@ public class VehicleManagement {
                     if (temp.addPassenger(person)) {
                         if (temp instanceof Bus) {
                             if (((Bus) temp).isReadyForUpgrade()) {
-                                bus++;
-                                plane--;
-                                temp.upgrade(temp.getCapacity());
+                                bus--;
+                                plane++;
+                                vehicles.add(temp.upgrade(temp.getCapacity()));
+                                vehicles.remove(lookupVehicle(person.getRoute()));
                                 return true;
                             } else {
                                 return true;
                             }
                         } else {
-                         return true;
+                            return true;
                         }
                     }
                 } else {
@@ -59,6 +60,7 @@ public class VehicleManagement {
                     }
                 }
             }
+            person.cancel();
         }
         return false;
     }
@@ -93,5 +95,3 @@ public class VehicleManagement {
     }
 }
 
-
-//420 blaze it
